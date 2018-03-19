@@ -146,6 +146,7 @@
                 //计算 介绍 的高度 
                 
             }else{
+                
                 [SVProgressHUD showWithStatus:responseC.msg];
             }
         }];
@@ -193,7 +194,7 @@
 
             }else{
                 
-                [SVHUD showErrorWithDelay:responseC.msg time:0.8];
+              //  [SVHUD showErrorWithDelay:responseC.msg time:0.8];
                
             }
         }];

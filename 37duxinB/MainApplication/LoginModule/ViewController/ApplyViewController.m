@@ -137,7 +137,7 @@
 -(void)configBtn:(JKCountDownButton *)sender{
 
         NSString *mobileString  = ((LoginView *)(_loginViewArray[0])).textField.text;
-        if ([RegularTool isPhoneNumber:mobileString])
+        if ([mobileString isMobileNumber])
         {
             sender.enabled = NO;
             //button type要 设置成custom 否则会闪动
@@ -167,7 +167,7 @@
 -(void)fetchCodeAction{
     
     NSString *mobileString = ((LoginView *)(_loginViewArray[0])).textField.text;
-    if ([RegularTool isPhoneNumber:mobileString]) {
+    if ([mobileString isMobileNumber]) {
         
         HttpsManager *httpsManager = [[HttpsManager alloc] init];
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
@@ -236,7 +236,7 @@
         NSString *codeString = ((LoginView *)(_loginViewArray[1])).textField.text;
         NSString *passwordString =((LoginView *)(_loginViewArray[2])).textField.text;
         
-        if ([RegularTool isPhoneNumber:mobileString]){
+        if ([mobileString isMobileNumber]){
             
             if (codeString.length == 6) {
                 

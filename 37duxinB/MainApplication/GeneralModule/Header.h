@@ -154,6 +154,7 @@
 #import <LYEmptyView/LYEmptyViewHeader.h>
 #import "UIImage+Category.h"
 #import "CWStarRateView.h"
+#import "NSString+RegexCategory.h"
 
 
 #import "UIButton+Sh.h"
