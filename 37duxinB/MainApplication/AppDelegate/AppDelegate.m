@@ -49,7 +49,6 @@
        
         [self tabbarView];
     }
-
     [self.window makeKeyAndVisible];
     
     [self setLaunchPage];
@@ -74,7 +73,6 @@
     
     
 }
-
 
 
 -(void)tabbarView
