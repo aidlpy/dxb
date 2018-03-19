@@ -70,17 +70,26 @@
 
 //手机号有效性
 - (BOOL)isMobileNumber{
-    /**
-     *  手机号以13、15、18、170开头，8个 \d 数字字符
-     *  小灵通 区号：010,020,021,022,023,024,025,027,028,029 还有未设置的新区号xxx
-     */
-    NSString *mobileNoRegex = @"^1((3\\d|5[0-35-9]|8[0-35-9])\\d|7[0678][059])\\d{7}$";//除4以外的所有个位整数，不能使用[^4,\\d]匹配，这里是否iOS Bug?
-    NSString *phsRegex =@"^0(10|2[0-57-9]|\\d{3})\\d{7,8}$";
     
-    BOOL ret = [self isValidateByRegex:mobileNoRegex];
-    BOOL ret1 = [self isValidateByRegex:phsRegex];
+    if (self.length == 11) {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+//    /**
+//     *  手机号以13、15、18、170开头，8个 \d 数字字符
+//     *  小灵通 区号：010,020,021,022,023,024,025,027,028,029 还有未设置的新区号xxx
+//     */
+//    NSString *mobileNoRegex = @"^1((3\\d|5[0-35-9]|8[0-35-9])\\d|7[0678][059])\\d{7}$";//除4以外的所有个位整数，不能使用[^4,\\d]匹配，这里是否iOS Bug?
+//    NSString *phsRegex =@"^0(10|2[0-57-9]|\\d{3})\\d{7,8}$";
+//
+//    BOOL ret = [self isValidateByRegex:mobileNoRegex];
+//    BOOL ret1 = [self isValidateByRegex:phsRegex];
+//
+//    return (ret || ret1);
     
-    return (ret || ret1);
 }
 
 //邮箱

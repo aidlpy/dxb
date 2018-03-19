@@ -52,7 +52,15 @@
         {
             loginView.textField.keyboardType =UIKeyboardTypePhonePad;
             loginView.textField.text = FetchUsername;
-            loginView.textField.enabled = NO;
+            NSString *token = FetchToken;
+            if (token) {
+                loginView.textField.enabled = NO;
+            }
+            else
+            {
+                loginView.textField.enabled = YES;
+            }
+
         }
         else
             if (idx == 1)
