@@ -35,7 +35,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [self customStaus];
     
-    UIButton *rightCallBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 15, 19)];
+    UIButton *rightCallBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 38)];
     [rightCallBtn setImage:[UIImage imageNamed:Image(@"mobileCall")] forState:UIControlStateNormal];
     [rightCallBtn addTarget:self action:@selector(callMobileAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:rightCallBtn];
@@ -43,7 +43,7 @@
     rightNagetiveSpacer.width = -5;
     
     
-    UIButton *leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 15, 19)];
+    UIButton *leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 38)];
     [leftBtn setImage:[UIImage imageNamed:Image(@"whiteLeftArrow")] forState:UIControlStateNormal];
     [leftBtn addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
