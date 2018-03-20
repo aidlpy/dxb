@@ -58,7 +58,7 @@
         _serviceSinglePriceLabel.font = FONT_13;
         [_baseView addSubview:_serviceSinglePriceLabel];
         
-        _serviceDetailLabel = [[UILabel alloc] initWithFrame:CGRectMake(x(_titleLabel), bottom(_serviceSinglePriceLabel)+14.0f, w(_titleLabel), 34.0f)];
+        _serviceDetailLabel = [[UILabel alloc] initWithFrame:CGRectMake(x(_titleLabel), bottom(_serviceSinglePriceLabel)+10.0f, w(_titleLabel), 20.0f)];
         _serviceDetailLabel.text = @"咨询信息: 家庭原因";
         _serviceDetailLabel.textColor = Color_4C4C4C;
         _serviceDetailLabel.font = FONT_13;
@@ -87,21 +87,21 @@
     _serviceDetailLabel.text = [NSString stringWithFormat:@"咨询信息: %@",model.packageServiceContent];
     _serviceCreateTimeLabel.text = [NSString stringWithFormat:@"%@",model.packageServiceCreateTime];
     
-    CGSize size = [_serviceDetailLabel boundingRectWithSize:CGSizeMake(w(_serviceDetailLabel), 0)];
-    [_serviceDetailLabel setMj_h:size.height];
-    
-    if (size.height -16.0f > 0 ) {
-         [_baseView setMj_h:216.0f + size.height-16.0f];
-         model.cellHeight = h(_baseView) + 23.0f;
-    }
-    else
-    {
-        
-        [_baseView setMj_h:202.5f];
-        model.cellHeight = h(_baseView) + 23.0f;
-    }
-    
-    _serviceCreateTimeLabel.frame = CGRectMake(x(_titleLabel),h(_baseView)-20, w(_titleLabel), 14.0f);
+//    CGSize size = [_serviceDetailLabel boundingRectWithSize:CGSizeMake(w(_serviceDetailLabel), 0)];
+//    [_serviceDetailLabel setMj_h:size.height];
+//    
+//    if (size.height -16.0f > 0 ) {
+//         [_baseView setMj_h:216.0f + size.height-16.0f];
+//         model.cellHeight = h(_baseView) + 23.0f;
+//    }
+//    else
+//    {
+//        
+//        [_baseView setMj_h:202.5f];
+//        model.cellHeight = h(_baseView) + 23.0f;
+//    }
+//    
+//    _serviceCreateTimeLabel.frame = CGRectMake(x(_titleLabel),h(_baseView)-20, w(_titleLabel), 14.0f);
    
 }
 

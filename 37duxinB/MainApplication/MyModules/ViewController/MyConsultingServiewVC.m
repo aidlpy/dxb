@@ -57,7 +57,7 @@
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setObject:_orderType forKey:@"service_type"];
     [httpManager getServerAPI:FetchServicePackageData deliveryDic:dic successful:^(id responseObject) {
-        
+        NSLog(@"responseObject==>%@",responseObject);
         NSDictionary *responseDic = (NSDictionary *)responseObject;
         if ([[responseDic objectForKey:@"code"]  integerValue] == 200) {
             
@@ -228,29 +228,25 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    PackageModel *model = _dataArray[indexPath.row];
-//    if ([model.packageServiceType integerValue] == 0) {
-//        
-//        FirstConsultingVC *vc= [FirstConsultingVC new];
-//        vc.hidesBottomBarWhenPushed  = YES;
-//        vc.isEdit = YES;
-//        [vc setmodel:model];
-//        [self.navigationController pushViewController:vc animated:YES];
-//        
-//    }
-//    else
-//    {
-//        DeepConsultingVC *vc = [DeepConsultingVC new];
-//        vc.hidesBottomBarWhenPushed = YES;
-//        //vc.model = model;
-//        vc.isEdit = YES;
-//        [self.navigationController  pushViewController:vc animated:YES];
-//        
-//    }
-    
-    
-    
-    
+    PackageModel *model = _dataArray[indexPath.row];
+    if ([model.packageServiceType integerValue] == 0) {
+        
+        FirstConsultingVC *vc= [FirstConsultingVC new];
+        vc.hidesBottomBarWhenPushed  = YES;
+        vc.isEdit = YES;
+        [vc setmodel:model];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    else
+    {
+        DeepConsultingVC *vc = [DeepConsultingVC new];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.isEdit = YES;
+        [vc setmodel:model];
+        [self.navigationController  pushViewController:vc animated:YES];
+        
+    }
 }
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath

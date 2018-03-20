@@ -11,5 +11,5 @@
 
 @interface DeepConsultingVC : BaseViewController
 @property(nonatomic,assign)BOOL isEdit;
-
+-(void)setmodel:(PackageModel *)model;
 @end

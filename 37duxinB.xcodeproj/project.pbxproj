@@ -24,7 +24,6 @@
 		BA035EA320186DD2000BD97A /* _7duxinBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA035EA220186DD2000BD97A /* _7duxinBTests.m */; };
 		BA035EAE20186DD2000BD97A /* _7duxinBUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA035EAD20186DD2000BD97A /* _7duxinBUITests.m */; };
 		BA2653E02029E166008A79A8 /* AccountSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2653DF2029E166008A79A8 /* AccountSettingViewController.m */; };
-		BA2653E32029E59C008A79A8 /* ConsultingServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2653E22029E59C008A79A8 /* ConsultingServiceViewController.m */; };
 		BA2653E62029E7DE008A79A8 /* ReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2653E52029E7DE008A79A8 /* ReservationViewController.m */; };
 		BA2653E92029E958008A79A8 /* OrderTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2653E82029E958008A79A8 /* OrderTitleView.m */; };
 		BA2653EC2029E9DA008A79A8 /* ConsultingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2653EB2029E9DA008A79A8 /* ConsultingViewController.m */; };
@@ -664,8 +663,6 @@
 		BA035EAF20186DD2000BD97A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA2653DE2029E166008A79A8 /* AccountSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountSettingViewController.h; sourceTree = "<group>"; };
 		BA2653DF2029E166008A79A8 /* AccountSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountSettingViewController.m; sourceTree = "<group>"; };
-		BA2653E12029E59C008A79A8 /* ConsultingServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsultingServiceViewController.h; sourceTree = "<group>"; };
-		BA2653E22029E59C008A79A8 /* ConsultingServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConsultingServiceViewController.m; sourceTree = "<group>"; };
 		BA2653E42029E7DE008A79A8 /* ReservationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReservationViewController.h; sourceTree = "<group>"; };
 		BA2653E52029E7DE008A79A8 /* ReservationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReservationViewController.m; sourceTree = "<group>"; };
 		BA2653E72029E958008A79A8 /* OrderTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTitleView.h; sourceTree = "<group>"; };
@@ -2213,8 +2210,6 @@
 				BAC91DCA2029D78C0073EEB8 /* MyInfoViewController.m */,
 				BA2653DE2029E166008A79A8 /* AccountSettingViewController.h */,
 				BA2653DF2029E166008A79A8 /* AccountSettingViewController.m */,
-				BA2653E12029E59C008A79A8 /* ConsultingServiceViewController.h */,
-				BA2653E22029E59C008A79A8 /* ConsultingServiceViewController.m */,
 				BA2653ED202A968E008A79A8 /* MyConsultingServiewVC.h */,
 				BA2653EE202A968E008A79A8 /* MyConsultingServiewVC.m */,
 				BA033643202AD17F00F72017 /* ServiceSelectedVC.h */,
@@ -4979,7 +4974,6 @@
 				BC18853D204EC0BD00F106E2 /* UILabel+AutomaticWriting.m in Sources */,
 				BC79849B203298F500A0F9C2 /* EaseSDKHelper.m in Sources */,
 				BAC91D61202815CB0073EEB8 /* BaseInfoViewController.m in Sources */,
-				BA2653E32029E59C008A79A8 /* ConsultingServiceViewController.m in Sources */,
 				BC798220203199E200A0F9C2 /* DeepConsultingTypeOneCell.m in Sources */,
 				BC798481203298F500A0F9C2 /* EaseUsersListViewController.m in Sources */,
 				BC188520204EC0BD00F106E2 /* UIAlertView+MKNetworkKitAdditions.m in Sources */,

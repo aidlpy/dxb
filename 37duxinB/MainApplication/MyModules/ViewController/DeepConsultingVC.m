@@ -23,6 +23,8 @@
     UITableView *_tableView;
     NSArray *_titleArray;
     NSMutableArray *_infoArray;
+    PackageModel *_model;
+    NSArray *_keyboradType;
     
 }
 @end
@@ -36,8 +38,67 @@
     [self initUI];
 }
 
+-(void)setmodel:(PackageModel *)model{
+    
+    _model = [[PackageModel alloc] init];
+    _model.packageId = model.packageId;
+    _model.packageTitle = model.packageTitle;
+    
+    NSDictionary *tagsDic = @{@"恋爱婚姻":@"1",@"职业发展":@"2",@"亲子教育":@"3",@"性心理":@"4",@"人际关系":@"5",@"个人成长":@"6",@"情绪压力":@"7",@"解梦":@"8",@"星座占卜":@"9"};
+    __block NSString *tagsString =@"";
+    NSArray *tagsArray = [model.packageServiceTags componentsSeparatedByString:@","];
+    [tagsArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (tagsString.length == 0) {
+            tagsString = [NSString stringWithFormat:@"%@%@",tagsString,[tagsDic objectForKey:(NSString *)obj]];
+        }
+        else
+        {
+            tagsString = [ NSString stringWithFormat:@"%@,%@",tagsString,[tagsDic objectForKey:(NSString *)obj]];
+            
+        }
+    }];
+    _model.packageServiceTags = tagsString;
+    
+    __block NSString *chatType = @"";
+    NSArray *array = [model.packageConsultationWay componentsSeparatedByString:@","];
+    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if([obj isEqualToString:@"电话"]){
+            if(chatType.length == 0){
+                chatType = [NSString stringWithFormat:@"%@%@",chatType,@"0"];
+                
+            }
+            else
+            {
+                chatType = [NSString stringWithFormat:@"%@,%@",chatType,@"0"];
+            }
+            
+        }
+        
+        if([obj isEqualToString:@"文字"]){
+            if(chatType.length == 0){
+                chatType = [NSString stringWithFormat:@"%@%@",chatType,@"1"];
+                
+            }
+            else
+            {
+                chatType = [NSString stringWithFormat:@"%@,%@",chatType,@"1"];
+            }
+            
+        }
+    }];
+    
+    _model.packageConsultationWay = chatType;
+    _model.packageServiceSinglePrice = model.packageServiceSinglePrice;
+    _model.packageServiceHours = model.packageServiceHours;
+    _model.packageServiceTimes = model.packageServiceTimes;
+    _model.packageServiceContent = model.packageServiceContent;
+    
+}
+
 -(void)initData{
     
+    _keyboradType = @[@"",@"",@"",@"",@"",@"",@""];
     _titleArray =@[@{@"title":@"咨询标题",@"palceHolder":@"请输入标题",@"arrowState":@"1",@"required":@"0",@"editable":@"1"},
                      @{@"title":@"咨询标签",@"palceHolder":@"请输入标签",@"arrowState":@"1",@"required":@"0",@"editable":@"1"},
                    @{@"title":@"咨询方式",@"palceHolder":@"",@"arrowState":@"1",@"required":@"0",@"selectedbtn":@[@"电话",@"文字"]},
@@ -45,14 +106,15 @@
                      @{@"title":@"咨询次数",@"palceHolder":@"请输入次数",@"arrowState":@"1",@"required":@"0",@"item":@"次",@"editable":@"1"},
                    @{@"title":@"单次价格",@"palceHolder":@"请输入价格",@"arrowState":@"1",@"required":@"0",@"item":@"元",@"editable":@"1"},
                    @{@"title":@"服务描述",@"palceHolder":@"请输入服务描述...",@"arrowState":@"1",@"required":@"0"}];
+
     if (_isEdit)
     {
         
+        _infoArray = [[NSMutableArray alloc] initWithObjects:_model.packageTitle,_model.packageServiceTags,_model.packageConsultationWay, [NSString stringWithFormat:@"%@",_model.packageServiceHours],[NSString stringWithFormat:@"%@",_model.packageServiceTimes],_model.packageServiceSinglePrice,_model.packageServiceContent, nil];
     }
     else
     {
-        _infoArray = [[NSMutableArray alloc] initWithObjects:@"",@"",@"1",@"",@"",@"",@"", nil];
-        
+        _infoArray = [[NSMutableArray alloc] initWithObjects:@"",@"",@"1",@"",@"",@"",@"",nil];
     }
    
 }
@@ -106,8 +168,19 @@
 }
 
 -(void)releaseAdvice{
+    [SVProgressHUD show];
     HttpsManager *httpManager = [[HttpsManager alloc] init];
     NSMutableDictionary  *dic = [[NSMutableDictionary alloc] init];
+    __block NSString *urlString = @"";
+    if (_isEdit)
+    {
+        urlString = [NSString stringWithFormat:@"%@%@",PostModifyReservationPackage,_model.packageId];
+    }
+    else
+    {
+        urlString =PostCreateReservationPackage;
+        
+    }
     [dic setObject:@"1" forKey:@"service_type"];
     [dic setObject:_infoArray[0] forKey:@"title"];
     [dic setObject:_infoArray[1] forKey:@"tags"];
@@ -116,7 +189,7 @@
     [dic setObject:_infoArray[4] forKey:@"service_times"];
     [dic setObject:_infoArray[5] forKey:@"single_price"];
     [dic setObject:_infoArray[6] forKey:@"service_content"];
-    [httpManager postServerAPI:PostCreateReservationPackage deliveryDic:dic  successful:^(id responseObject) {
+    [httpManager postServerAPI:urlString deliveryDic:dic  successful:^(id responseObject) {
         NSLog(@"responseObject===>%@",responseObject);
         
         if ([[responseObject objectForKey:@"code"] integerValue]== 200) {
@@ -125,14 +198,19 @@
             
             if ([[[responseDic objectForKey:@"data"] objectForKey:@"error_code"] integerValue] == 0) {
                 
-                [SVHUD showSuccessWithDelay:@"发布任务成功！" time:0.8f blockAction:^{
+                [SVHUD showSuccessWithDelay:_isEdit?@"修改任务成功！":@"发布任务成功！" time:0.8f blockAction:^{
                     
-                    NSInteger index = self.navigationController.viewControllers.count-3;
+                    __block NSInteger index;
+                    if (_isEdit) {
+                        index = self.navigationController.viewControllers.count-2;
+                    }
+                    else{
+                        index = self.navigationController.viewControllers.count-3;
+                    }
                     MyConsultingServiewVC *vc = self.navigationController.viewControllers[index];
                     [self.navigationController popToViewController:vc  animated:YES];
                     
                 }];
-                
             }
             else
             {
@@ -144,7 +222,7 @@
         
         
     } fail:^(id error) {
-        
+        [SVHUD showErrorWithDelay:_isEdit?@"修改任务失败！":@"发布任务失败！" time:0.8];
     }];
     
 }
@@ -182,6 +260,9 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.tag = indexPath.row;
+        if (![_infoArray[indexPath.row] isEqualToString:@""]) {
+            cell.commentTextView.text = _infoArray[indexPath.row];
+        }
         cell.lineView.hidden = YES;
         cell.sampleBtn.hidden = YES;
         [cell updateUI:dic];
@@ -234,6 +315,9 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.tag = indexPath.row;
+        NSString *string = [NSString stringWithFormat:@"%@",_infoArray[cell.tag]];
+        cell.textFild.text = string;
+        cell.textFild.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         cell.textFieldBlock = ^(UITextField *textField) {
             [_infoArray replaceObjectAtIndex:textField.tag withObject:textField.text];
             NSLog(@"%@",_infoArray);
@@ -253,6 +337,9 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.tag = indexPath.row;
+        if (![_infoArray[indexPath.row] isEqualToString:@""]) {
+            cell.textFild.text = _infoArray[indexPath.row];
+        }
         cell.textFieldBlock = ^(UITextField *textField) {
             [_infoArray replaceObjectAtIndex:textField.tag withObject:textField.text];
             NSLog(@"%@",_infoArray);
@@ -282,9 +369,6 @@
     }
     
 }
-
-
-
 
 -(void)backTo{
     [self.navigationController popViewControllerAnimated:YES];

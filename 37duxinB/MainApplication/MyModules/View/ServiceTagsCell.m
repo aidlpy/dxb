@@ -78,6 +78,7 @@
     {
         _textFild.hidden = YES;
         NSArray *tagsArray = [string componentsSeparatedByString:@","];
+        NSLog(@"tagsArray==>%@",tagsArray);
         [tagsArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSInteger tag = [(NSString *)obj integerValue]-1;
             UILabel *label = [self tagStytle:_tagsTitleArray[tag] withFrame:CGRectMake(90+idx*85,0,70,25)];
@@ -103,7 +104,7 @@
 }
 
 -(UILabel *)tagStytle:(NSString *)title withFrame:(CGRect)frame{
-    
+    NSLog(@"frame==>%@",NSStringFromCGRect(frame));
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     [label.layer setBorderWidth:0.5f];
     [label.layer setCornerRadius:h(label)/2];

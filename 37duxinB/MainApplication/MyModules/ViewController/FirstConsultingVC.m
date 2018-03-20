@@ -40,7 +40,7 @@
     _model.packageId = model.packageId;
     _model.packageTitle = model.packageTitle;
     
-    NSDictionary *tagsDic = @{@"恋爱婚姻":@"1",@"职业发展":@"2",@"亲子教育":@"3",@"性心理":@"4",@"人际关系":@"5",@"个人成长":@"6",@"情绪压力":@"8",@"解梦":@"9",@"星座占卜":@"10"};
+    NSDictionary *tagsDic = @{@"恋爱婚姻":@"1",@"职业发展":@"2",@"亲子教育":@"3",@"性心理":@"4",@"人际关系":@"5",@"个人成长":@"6",@"情绪压力":@"7",@"解梦":@"8",@"星座占卜":@"9"};
     __block NSString *tagsString =@"";
     NSArray *tagsArray = [model.packageServiceTags componentsSeparatedByString:@","];
     [tagsArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -55,9 +55,6 @@
     }];
     _model.packageServiceTags = tagsString;
 
-    
-    
-    
     __block NSString *chatType = @"";
     NSArray *array = [model.packageConsultationWay componentsSeparatedByString:@","];
     [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -88,12 +85,11 @@
     }];
     
     _model.packageConsultationWay = chatType;
+    _model.packageServiceSinglePrice = model.packageServiceSinglePrice;
     _model.packageServiceHours = model.packageServiceHours;
     _model.packageServiceTimes = model.packageServiceTimes;
     _model.packageServiceContent = model.packageServiceContent;
-    
-    
-    
+
 }
 
 -(void)initData{
@@ -107,7 +103,7 @@
     if (_isEdit)
     {
         
-        _infoArray = [[NSMutableArray alloc] initWithObjects:_model.packageTitle,_model.packageServiceTags,_model.packageConsultationWay, [NSString stringWithFormat:@"%@",_model.packageServiceHours],[NSString stringWithFormat:@"%@",_model.packageServiceTimes],_model.packageServiceContent, nil];
+        _infoArray = [[NSMutableArray alloc] initWithObjects:_model.packageTitle,_model.packageServiceTags,_model.packageConsultationWay, [NSString stringWithFormat:@"%@",_model.packageServiceHours],[NSString stringWithFormat:@"%@",_model.packageServiceSinglePrice],_model.packageServiceContent, nil];
     }
     else
     {
@@ -172,6 +168,7 @@
 
 
 -(void)releaseAdvice{
+    [SVProgressHUD show];
     HttpsManager *manager = [[HttpsManager alloc] init];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithCapacity:0];
     
@@ -202,7 +199,6 @@
             NSDictionary *responseDic = (NSDictionary *)responseObject;
             
             if ([[[responseDic objectForKey:@"data"] objectForKey:@"error_code"] integerValue] == 0) {
-                
                 [SVHUD showSuccessWithDelay:_isEdit?@"修改任务成功！":@"发布任务成功！" time:0.8f blockAction:^{
                     
                     __block NSInteger index;
@@ -226,7 +222,7 @@
         }
         
     } fail:^(id error) {
-        NSLog(@"error==>%@",error);
+        [SVHUD showErrorWithDelay:_isEdit?@"修改任务失败！":@"发布任务失败！" time:0.8f];
     }];
 }
 
@@ -305,12 +301,9 @@
             [cell updateUI:dic];
             cell.selectedTypeBlock = ^(NSString *tag) {
                 [_infoArray replaceObjectAtIndex:2 withObject:tag];
-                NSLog(@"%@",_infoArray);
                 [_tableView reloadData];
             };
             return cell;
-            
-            
         }
         else
             if(indexPath.row == 3 ||indexPath.row == 4)
@@ -323,7 +316,7 @@
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 }
                 cell.tag = indexPath.row;
-                
+                cell.textFild.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
                 NSString *string = [NSString stringWithFormat:@"%@",_infoArray[cell.tag]];
                 cell.textFild.text = string;
                
@@ -351,11 +344,9 @@
                 if (![_infoArray[indexPath.row] isEqualToString:@""]) {
                     cell.textFild.text = _infoArray[indexPath.row];
                 }
-                
+               
                 cell.textFieldBlock = ^(UITextField *textField) {
-            
                     [_infoArray replaceObjectAtIndex:textField.tag withObject:textField.text];
-                    NSLog(@"%@",_infoArray);
                 };
                 [cell updateUI:dic];
                 return cell;
