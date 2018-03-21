@@ -34,7 +34,7 @@
         model.packageServiceTimes = [dic objectForKey:@"service_times"];
         model.packageServiceContent = [dic objectForKey:@"service_content"];
         model.packageServiceSinglePrice = [dic objectForKey:@"single_price"];
-        model.packageServiceCreateTime = [dic objectForKey:@"created_at"];
+        model.packageServiceCreateTime = [dic objectForKey:@"updated_at"];
         fetchModelBlock(stop,model);
         
     }];

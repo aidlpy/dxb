@@ -20,7 +20,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        _baseView = [[UIView alloc] initWithFrame:CGRectMake(11.5f,20, SIZE.width-23.0f,225.0f)];
+        _baseView = [[UIView alloc] initWithFrame:CGRectMake(11.5f,10,SIZE.width-23.0f,225.0f)];
         _baseView.backgroundColor = [UIColor whiteColor];
         [_baseView.layer setCornerRadius:2.0f];
         [_baseView.layer setBorderColor:Color_F1F1F1.CGColor];
@@ -94,21 +94,8 @@
     _serviceSinglePriceLabel.text = [NSString stringWithFormat:@"单次价格: %@",model.packageServiceSinglePrice];
     _serviceDetailLabel.text = [NSString stringWithFormat:@"咨询信息: %@",model.packageServiceContent];
      _serviceCreateTimeLabel.text = [NSString stringWithFormat:@"%@",model.packageServiceCreateTime];
-    model.cellHeight = 234.0f;
-//    CGSize size = [_serviceDetailLabel boundingRectWithSize:CGSizeMake(w(_serviceDetailLabel), 0)];
-//    [_serviceDetailLabel setMj_h:size.height];
-//
-//    if (size.height-16.0f > 0 ) {
-//        [_baseView setMj_h:214.0f + size.height];
-//        model.cellHeight = h(_baseView)+23.0f;
-//    }
-//    else
-//    {
-//        [_baseView setMj_h:225.5f];
-//         model.cellHeight = h(_baseView)+23.0f;
-//    }
-//
-//    _serviceCreateTimeLabel.frame = CGRectMake(x(_titleLabel),h(_baseView)-20, w(_titleLabel), 14.0f);
+     model.cellHeight = 237.0f;
+
    
     
 }

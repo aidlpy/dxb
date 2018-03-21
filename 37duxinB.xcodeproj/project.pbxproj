@@ -1291,6 +1291,8 @@
 		BC3D65C32033A200004B541F /* ConsultingMainOrderFinishDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConsultingMainOrderFinishDetailViewController.m; sourceTree = "<group>"; };
 		BC3D65C520342834004B541F /* LocationPhotoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationPhotoModel.h; sourceTree = "<group>"; };
 		BC3D65C620342834004B541F /* LocationPhotoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationPhotoModel.m; sourceTree = "<group>"; };
+		BC4998072062011500A952D2 /* 37duxinB copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "37duxinB copy-Info.plist"; path = "/Users/zhangxinrong/Desktop/Bclient/37duxinB copy-Info.plist"; sourceTree = "<absolute>"; };
+		BC4998122062013A00A952D2 /* NotificationService copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NotificationService copy-Info.plist"; path = "/Users/zhangxinrong/Desktop/Bclient/NotificationService copy-Info.plist"; sourceTree = "<absolute>"; };
 		BC65E73F2052300400B032EF /* calling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = calling.mp3; sourceTree = "<group>"; };
 		BC786AB92057D79800C95074 /* ShCredentialsCertifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShCredentialsCertifyViewController.h; sourceTree = "<group>"; };
 		BC786ABA2057D79800C95074 /* ShCredentialsCertifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShCredentialsCertifyViewController.m; sourceTree = "<group>"; };
@@ -1772,6 +1774,8 @@
 				BA035E8720186DD2000BD97A /* Products */,
 				1939F822CEE06BCBD8AC1793 /* Pods */,
 				E8CDF7DEA4D65B383005CD8D /* Frameworks */,
+				BC4998072062011500A952D2 /* 37duxinB copy-Info.plist */,
+				BC4998122062013A00A952D2 /* NotificationService copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};

@@ -496,17 +496,9 @@
                     if(!isOkay){
                         *stop = YES;
                     }
-                  
                 }
-            
             }
-            else{
-                
-                
-            }
-            
         }
-        
     }];
     
     if (isOkay) {
